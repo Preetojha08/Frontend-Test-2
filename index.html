@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<font size="8" color="green">Final test lab</font><br><br>
+	<font size="8" color="green">Final test lab</font>
+    <br><br>
 	Number of rows: <input type="text" id="t1" /><br><br>
 	Number of cols: <input type="text" id="t2" /><br><br>
 	
@@ -19,7 +20,8 @@
 </body>
 
 <script language="javascript">
-		
+	
+
     function generateTable() 
     {
         // creates a <table> element and a <tbody> element
@@ -28,13 +30,21 @@
         var t1 = document.getElementById("t1").value;
         var t2 = document.getElementById("t2").value;
 
+        //validate the input
+        if (isNaN(t1) || isNaN(t2)) 
+        {
+            alert('Please enter valid numbers for rows and columns.');
+            return;
+        }
+
         // creating all cells
-        for (let i = 0; i < t1; i++) {
+        for (let i = 0; i < t1; i++) 
+        {
             // creates a table row
             const row = document.createElement("tr");
 
-            for (let j = 0; j < t2; j++) {
-
+            for (let j = 0; j < t2; j++) 
+            {
             const cell = document.createElement("td");
             const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
             cell.appendChild(cellText);
@@ -51,9 +61,38 @@
         document.body.appendChild(tbl);
         // sets the border attribute of tbl to '2'
         tbl.setAttribute("border", "2");
+
+        document.getElementById("b1").style.visibility = "hidden";
+    }
+
+    function addColumn() 
+    {
+
     }
 
 
+    function addRow() 
+    {
+    // Get a reference to the table
+    var tbl = document.getElementsByTagName("table")[0];
+    
+    // Create a new row
+    var newRow = tbl.insertRow();
+    
+    // Get the number of columns in the table
+    var numCols = tbl.rows[0].cells.length;
+    
+    // Add cells to the new row
+    for (let i = 0; i < numCols; i++) {
+        // Create a new cell
+        var newCell = newRow.insertCell();
+        
+        // Add some text to the cell
+        newCell.textContent = "cell in row " + ((tbl.rows.length)-1) + ", column " + (i);
+    }
+}
 
+
+   
 </script>
 </html>
