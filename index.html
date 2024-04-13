@@ -67,7 +67,25 @@
 
     function addColumn() 
     {
+        // Get a reference to the table
+        var tbl = document.getElementsByTagName("table")[0];
+        
+        // Get the number of rows in the table
+        var numRows = tbl.rows.length;
+        
+        // Loop through each row
+        for (let i = 0; i < numRows; i++) 
+        {
+            // Get the current row
+            var row = tbl.rows[i];
+            
+            // Create a new cell in the current row
+            var newCell = row.insertCell();
+            
+            // Add some text to the cell
+            newCell.textContent = "cell in row " + (i) + ", column " + ((row.cells.length)-1);
 
+        }
     }
 
 
