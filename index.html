@@ -24,6 +24,11 @@
 
     function generateTable() 
     {
+        //Add break before table
+        var br = document.createElement('br');
+        document.body.appendChild(br);
+        document.body.appendChild(br);
+
         // creates a <table> element and a <tbody> element
         const tbl = document.createElement("table");
         const tblBody = document.createElement("tbody");
@@ -31,15 +36,24 @@
         var t2 = document.getElementById("t2").value;
 
         //validate the input
-        if (isNaN(t1) || isNaN(t2)) 
+        if(t1=='' || t2=='')
+        {
+            alert('Please enter an value.');
+            return;
+        }
+        else if (t1<=0 || t2<=0) 
         {
             alert('Please enter valid numbers for rows and columns.');
             return;
-        }
+        }    
+
+        //clear the content pf the body from html 
+        document.body.innerHTML = '';
 
         // creating all cells
         for (let i = 0; i < t1; i++) 
         {
+            
             // creates a table row
             const row = document.createElement("tr");
 
@@ -62,7 +76,22 @@
         // sets the border attribute of tbl to '2'
         tbl.setAttribute("border", "2");
 
-        document.getElementById("b1").style.visibility = "hidden";
+        //to make Add Row Button on Webpage
+        var addRowButton = document.createElement('button');
+        addRowButton.innerText = 'Add 1 Row to the Table';
+        addRowButton.onclick = addRow;
+        
+         //to make Add Row Button on Webpage
+        var addColButton = document.createElement('button');
+        addColButton.innerText = 'Add 1 Column to the Table';
+        addColButton.onclick = addColumn;
+        
+		document.body.appendChild(br);
+        document.body.appendChild(addRowButton);
+        document.body.appendChild(br);
+        document.body.appendChild(addColButton);
+
+
     }
 
     function addColumn() 
